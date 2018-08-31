@@ -23,6 +23,8 @@ export class NewCardInputComponent implements OnInit {
     if (event.code === 'Enter' && this.newCard.text.length > 0){
       // this.addCard(this.newCard.text);
       console.log("enter pressed");
+      console.log(this.newCard.text);
+      this.cardAdd.emit(this.newCard.text);
     }
   }
   
