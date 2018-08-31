@@ -24,7 +24,7 @@ export class AppComponent {
 
   ];
 
-  
+
 
   addCard(cardText: String){
     this.cards.push({text: cardText});

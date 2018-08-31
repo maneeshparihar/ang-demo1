@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, HostListener } from '@angular/core';
-
+import { Component, OnInit, Output, EventEmitter, HostListener, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-new-card-input',
@@ -18,13 +18,20 @@ export class NewCardInputComponent implements OnInit {
   constructor() { };
   ngOnInit(){};
 
+  @ViewChild('form') public form: NgForm;
+
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent){
     if (event.code === 'Enter' && this.newCard.text.length > 0){
       // this.addCard(this.newCard.text);
-      console.log("enter pressed");
+      console.log('enter pressed');
       console.log(this.newCard.text);
       this.cardAdd.emit(this.newCard.text);
+      this.newCard.text = '';
+      //this will reset the text input element as it is set as ngModel
+
+      
+
     }
   }
   
