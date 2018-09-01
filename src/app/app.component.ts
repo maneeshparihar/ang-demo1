@@ -1,4 +1,11 @@
 import { Component, HostListener } from '@angular/core';
+import { CardService } from './card.service';
+import {AngularFireDatabase} from 'angularfire2/database';
+import { Card } from './models/card';
+import {Observable} from 'rxjs';
+
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,6 +13,7 @@ import { Component, HostListener } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  public cards$: Observable<Card[]>;
 
 
   title = 'demo1';
@@ -24,12 +32,26 @@ export class AppComponent {
 
   ];
 
+  // addCard(cardText: String){
+  //   this.cards.push({text: cardText});
+  //   console.log(this.cards);
+  // }
+
+  // constructor(private cardservice: CardService ){
+  //   cardservice.get().subscribe((cards:any) => this.cards = cards);
+
+  // };
+
+addCard(cardText: string){
+  this.cardService.createCard(new Card(cardText));
+}
 
 
-  addCard(cardText: String){
-    this.cards.push({text: cardText});
-    console.log(this.cards);
-  }
+constructor(private cardService: CardService) {
+  this.cards$ = this.cardService.getCardsList();
+  
+}
+
 
 
 
