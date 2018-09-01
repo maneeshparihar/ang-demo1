@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-block">
     <!-- <input placeholder="Take a note..." class="form-control" [value]="newCard.text" (input)="newCard.text=$event.target.value"> -->
-      <form novalidate #form="ngForm">
-      <input placeholder="Take a note..." class="form-control" name="text" [(ngModel)]="newCard.text" required>
+      <form novalidate [formGroup]="newCardForm">
+      <input placeholder="Take a note..." class="form-control" name="text" formControlName="text">
       </form>
   </div>
 </div>
